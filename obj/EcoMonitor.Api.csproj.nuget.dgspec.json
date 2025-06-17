@@ -13,13 +13,20 @@
         "packagesPath": "C:\\Users\\kaiqu\\.nuget\\packages\\",
         "outputPath": "F:\\Desenvolvimento\\Fiap\\Cap 7 - APIs e Integração de Sistemas - Webservice com ASP.NET Core 8\\EcoMonitor.Api\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "E:\\Sistemas\\Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\kaiqu\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\kaiqu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
