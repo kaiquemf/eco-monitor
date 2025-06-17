@@ -27,14 +27,14 @@ O **EcoMonitor** é um sistema RESTful desenvolvido em **.NET 8/9**, com o objet
 ## 📁 Estrutura de Projeto
 
 EcoMonitor.Api/
-├── Controllers/ # Endpoints REST
-├── Models/ # Entidades do domínio
-├── Repositories/ # Interfaces e implementações de dados
-├── Services/ # Lógica de negócio
-├── ViewModels/ # DTOs para responses
-├── Data/ # Contexto EF + Seed
-├── Migrations/ # Migrations EF Core
-└── Properties/ # launchSettings.json
+├── Controllers/ # Endpoints REST <br/>
+├── Models/ # Entidades do domínio <br/>
+├── Repositories/ # Interfaces e implementações de dados <br/>
+├── Services/ # Lógica de negócio <br/>
+├── ViewModels/ # DTOs para responses <br/>
+├── Data/ # Contexto EF + Seed <br/>
+├── Migrations/ # Migrations EF Core <br/>
+└── Properties/ # launchSettings.json <br/>
 
 ---
 
@@ -108,3 +108,12 @@ dotnet ef database update
 ### 📚 Tema ESG
 Eficiência Energética e Sustentabilidade
 O EcoMonitor visa monitorar e reduzir o consumo energético de ambientes corporativos ou domésticos, promovendo alertas inteligentes e relatórios automatizados.
+
+### 👨‍💻 Desenvolvido por
+| Nome                            | RM      |
+|---------------------------------|---------|
+|Henrique Novaes                  | RM98485 |
+|Maurício Dias Gonçalves          | RM555486|
+|Kaique Martins Da Silva Ferreira | RM557522|
+
+Projeto acadêmico FIAP — 2025
