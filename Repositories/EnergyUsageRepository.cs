@@ -13,12 +13,6 @@ namespace EcoMonitor.Api.Repositories
             _context = context;
         }
 
-        public async Task AddAsync(EnergyUsage usage)
-        {
-            await _context.EnergyUsages.AddAsync(usage);
-            await _context.SaveChangesAsync();
-        }
-
         public async Task<List<EnergyUsage>> GetPagedAsync(int page, int pageSize)
         {
             return await _context.EnergyUsages
@@ -28,20 +22,17 @@ namespace EcoMonitor.Api.Repositories
                 .ToListAsync();
         }
 
-        public async Task<List<EnergyUsage>> GetByDeviceAsync(string deviceId)
+        public async Task<List<EnergyUsage>> GetByDeviceAndPeriodAsync(string deviceId, DateTime start, DateTime end)
         {
             return await _context.EnergyUsages
-                .Where(e => e.DeviceId == deviceId)
-                .OrderByDescending(e => e.Timestamp)
+                .Where(e => e.DeviceId == deviceId && e.Timestamp >= start && e.Timestamp <= end)
                 .ToListAsync();
         }
 
-        public async Task<List<EnergyUsage>> GetHighConsumptionAlertsAsync(double thresholdKwh)
+        public async Task AddAsync(EnergyUsage usage)
         {
-            return await _context.EnergyUsages
-                .Where(e => e.KilowattHour > thresholdKwh)
-                .OrderByDescending(e => e.Timestamp)
-                .ToListAsync();
+            _context.EnergyUsages.Add(usage);
+            await _context.SaveChangesAsync();
         }
     }
 }

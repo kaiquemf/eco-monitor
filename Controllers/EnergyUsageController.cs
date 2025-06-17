@@ -1,5 +1,4 @@
-using EcoMonitor.Api.Models;
-using EcoMonitor.Api.Services;
+using EcoMonitor.Api.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EcoMonitor.Api.Controllers
@@ -8,38 +7,24 @@ namespace EcoMonitor.Api.Controllers
     [Route("api/[controller]")]
     public class EnergyUsageController : ControllerBase
     {
-        private readonly EnergyUsageService _service;
+        private readonly IEnergyUsageRepository _energyRepo;
 
-        public EnergyUsageController(EnergyUsageService service)
+        public EnergyUsageController(IEnergyUsageRepository energyRepo)
         {
-            _service = service;
+            _energyRepo = energyRepo;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
         {
-            var result = await _service.GetPagedAsync(page, pageSize);
+            var result = await _energyRepo.GetPagedAsync(page, pageSize);
             return Ok(result);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Create([FromBody] EnergyUsage input)
-        {
-            await _service.AddAsync(input);
-            return CreatedAtAction(nameof(GetAll), null);
         }
 
         [HttpGet("device/{deviceId}")]
-        public async Task<IActionResult> GetByDevice(string deviceId)
+        public async Task<IActionResult> GetByDeviceAndPeriod(string deviceId, DateTime start, DateTime end)
         {
-            var result = await _service.GetByDeviceAsync(deviceId);
-            return Ok(result);
-        }
-
-        [HttpGet("alerts")]
-        public async Task<IActionResult> GetAlerts([FromQuery] double threshold = 100.0)
-        {
-            var result = await _service.GetHighConsumptionAlertsAsync(threshold);
+            var result = await _energyRepo.GetByDeviceAndPeriodAsync(deviceId, start, end);
             return Ok(result);
         }
     }

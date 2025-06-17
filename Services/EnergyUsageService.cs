@@ -1,5 +1,5 @@
-using EcoMonitor.Api.Models;
 using EcoMonitor.Api.Repositories;
+using EcoMonitor.Api.ViewModels;
 
 namespace EcoMonitor.Api.Services
 {
@@ -12,16 +12,15 @@ namespace EcoMonitor.Api.Services
             _repository = repository;
         }
 
-        public Task<List<EnergyUsage>> GetPagedAsync(int page, int pageSize)
-            => _repository.GetPagedAsync(page, pageSize);
-
-        public Task<List<EnergyUsage>> GetByDeviceAsync(string deviceId)
-            => _repository.GetByDeviceAsync(deviceId);
-
-        public Task AddAsync(EnergyUsage usage)
-            => _repository.AddAsync(usage);
-
-        public Task<List<EnergyUsage>> GetHighConsumptionAlertsAsync(double thresholdKwh)
-            => _repository.GetHighConsumptionAlertsAsync(thresholdKwh);
+        public async Task<List<EnergyUsageViewModel>> GetPagedViewModelAsync(int page, int pageSize)
+        {
+            var entities = await _repository.GetPagedAsync(page, pageSize);
+            return entities.Select(e => new EnergyUsageViewModel
+            {
+                DeviceId = e.DeviceId,
+                KilowattHour = e.KilowattHour,
+                Timestamp = e.Timestamp
+            }).ToList();
+        }
     }
 }

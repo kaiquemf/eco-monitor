@@ -2,9 +2,9 @@ namespace EcoMonitor.Api.Models
 {
     public class EnergyUsage
     {
-        public Guid Id { get; set; }
-        public string DeviceId { get; set; }
-        public double KilowattHour { get; set; }
+        public required Guid Id { get; set; }
+        public required string DeviceId { get; set; }
+        public required double KilowattHour { get; set; }
         public DateTime Timestamp { get; set; }
     }
 }
